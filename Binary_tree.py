@@ -17,6 +17,7 @@ class Node:
                 self.right = Node(value)
             else:
                 self.right.insert(value)
+        # fonction récursive terminale !
 
     def in_order_traversal(self):
         if self.left:
@@ -45,6 +46,7 @@ class Node:
             return 0
         if self.value == value:
             return 1
+            # on met plutot return True (en python)
         if value < self.value:
             if self.left is not None:
                 return self.left.search(value)
@@ -123,7 +125,7 @@ class Node:
         return size
 
     # Hauteur d'un arbre
-    def treeHeigtht(self):
+    def treeHeight(self):
         if self is None:
             return 0
         leftHeight = 0

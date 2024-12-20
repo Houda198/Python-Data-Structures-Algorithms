@@ -34,27 +34,33 @@ class MyList:
         self.size += 1
 
     def insert_previous(self, value, element: Cell):
+        # je crée mon nouvel élément enn insérnant sa valeur
         new_element = Cell(value)
-
+        # je vérifie si la liste est vide
         if self.size == 0:
+            # je rajoute un élément qui sera head et tail de ma liste
             self.head = new_element
             self.tail = new_element
 
         else:
             new_element.next = element
             new_element.previous = element.previous
-
+            # si j'ai rien avant element j'insère un element avant le head d'ou changer la valeur du head
             if element.previous is None:
                 self.head = new_element
             else:
+                # sinon je relie l'element precedent avec le nouvel element
                 element.previous.next = new_element
+            # le nouvel  element se place avant l'element passé en paramètres
             element.previous = new_element
         self.size += 1
 
     def remove(self, element: Cell):
+        # si mon element est au début
         if element == self.head:
             # dans le cas où je supprime le premier element
             self.head = element.next
+            # si en décalant le premier element à la deuxième place et que cet element est None, ça veut dire qu'il y a qu'un seul element dans la liste en supprimant la fin de la liste
             if self.head is None:
                 self.tail = None
             else:
@@ -62,7 +68,9 @@ class MyList:
         # dans le cas où je veux supprimer un autre element à part le premier
         else:
             element.previous.next = element.next
+
             if element.next is None:
+                # si l'element d'après est None le tail de la liste devint l'avant dernier element
                 self.tail = element.previous
             else:
                 element.next.previous = element.previous
@@ -76,15 +84,16 @@ class MyList:
             element = element.next
         print("]")
 
+
 my_list = MyList()
 
 my_list.insert_next(5, None)
 my_list.display()
 
-my_list.insert_next(value = 12, element = my_list.tail)
+my_list.insert_next(value=12, element=my_list.tail)
 my_list.display()
 
-my_list.insert_previous(value = 32, element = my_list.tail)
+my_list.insert_previous(value=32, element=my_list.tail)
 my_list.display()
 
 my_list.remove(my_list.head)

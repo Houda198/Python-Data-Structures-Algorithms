@@ -4,12 +4,14 @@ def hash(chaine):
         # ord renvoie le nbr ascii de chaque caractere
         sum += ord(i)
     return sum
+
+
 class HashMap:
     def __init__(self, size):
         self.size = size
         self.value = [list() for _ in range(self.size)]
 
-#fonction hashage
+    # fonction hashage
 
     def add(self, word):
         index = hash(word) % self.size
@@ -38,8 +40,3 @@ if __name__ == "__main__":
     hashmap.display()
     hashmap.remove("hi")
     hashmap.display()
-
-
-
-
-

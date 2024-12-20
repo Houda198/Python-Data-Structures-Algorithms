@@ -1,5 +1,5 @@
 class Node:
-    #définir un arbre
+    # définir un element de l'arbre
     def __init__(self, value):
         self.value = value
         self.left = None
@@ -9,9 +9,9 @@ class Node:
     def UpdateHeight(self):
         self.height = 0
         if self.left is not None:
-            self.height = self.left.height+1
-        if self.right is not None and self.right.height+1 > self.height is not None:
-            self.height = self.right.height+1
+            self.height = self.left.height + 1
+        if self.right is not None and self.right.height + 1 > self.height is not None:
+            self.height = self.right.height + 1
 
     def getBalance(self):
         lh = -1
@@ -20,7 +20,7 @@ class Node:
             lh = self.left.height
         if self.right is not None:
             rh = self.right.height
-        return rh-lh
+        return rh - lh
 
     def find_Max(self):
         # trouver le maximum (fils droit)
@@ -28,6 +28,7 @@ class Node:
         while current.right is not None:
             current = current.right
         return current
+
     def in_order_traversal(self):
         if self.left:
             self.left.in_order_traversal()
@@ -35,15 +36,18 @@ class Node:
         if self.right:
             self.right.in_order_traversal()
 
+
 def insertNode(root, value):
     if root is None:
         return Node(value)
     if value < root.value:
         root.left = insertNode(root.left, value)
-    else :
+    else:
         root.right = insertNode(root.right, value)
     root.UpdateHeight()
     return root
+
+
 def deleteNode(root, value):
     if root is None:
         return None
@@ -68,7 +72,8 @@ def deleteNode(root, value):
     root.UpdateHeight()
     return root
 
-def LeftRotate(root : Node):
+
+def LeftRotate(root: Node):
     if root is None or root.right is None:
         return root
     racine = root.right
@@ -78,7 +83,8 @@ def LeftRotate(root : Node):
     racine.UpdateHeight()
     return racine
 
-def RightRotate(root : Node):
+
+def RightRotate(root: Node):
     if root is None or root.left is None:
         return root
     racine = root.left
@@ -88,9 +94,10 @@ def RightRotate(root : Node):
     racine.UpdateHeight()
     return racine
 
+
 class AVLTree:
     def __init__(self):
-        self.root:Node = None
+        self.root: Node = None
 
     def balance(self):
         if self.root is None:
@@ -116,6 +123,7 @@ class AVLTree:
     def delete(self, value):
         self.root = deleteNode(self.root, value)
         self.balance()
+
     def display(self):
         self.root.in_order_traversal()
 
@@ -132,5 +140,4 @@ print()
 avl.delete(7)
 avl.display()
 
-
-            #☺☺☺☺☺      ☺☺☺☺☺      ☺☺☺☺☺      ☺☺☺☺☺      ☺☺☺☺☺
+# ☺☺☺☺☺      ☺☺☺☺☺      ☺☺☺☺☺      ☺☺☺☺☺      ☺☺☺☺☺
